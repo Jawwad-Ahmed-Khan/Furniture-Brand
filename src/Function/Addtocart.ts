@@ -1,11 +1,11 @@
 import { Product } from "@/app/components/types/Product"
-import { product } from "@/sanity/schemaTypes/product"
-import { json } from "stream/consumers"
+
+
 
 export default function AddtoCart(product:Product,Quantity?:number,Size?:string,select_color?:string)
 {
     const cart = JSON.parse(localStorage.getItem('cart') || '{}');
-    let Size_value:string="";
+    // let Size_value:string="";
    
     // if(cart.Size!=Size && cart.Size!=undefined)
     // {

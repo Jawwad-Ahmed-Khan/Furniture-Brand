@@ -1,8 +1,8 @@
-import Image from "next/image";
+
 import { client } from "@/sanity/lib/client";
 import Barline from "./productcomponent/bar";
 import ProductCard from "./productcomponent/DescriptionProduct";
-import { product } from "@/sanity/schemaTypes/product";
+
 
 interface Props {
     params: {

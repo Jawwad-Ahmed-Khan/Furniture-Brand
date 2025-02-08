@@ -7,7 +7,7 @@ import { Producttype } from '../components/types/Product';
 
 export default function BillingPage() {
   // Define the state for your div fields
-  let {user}=useUser();
+  const {user}=useUser();
   const [formData, setFormData] = useState({
     userID:user?.id,
     firstName: '',
@@ -33,14 +33,14 @@ export default function BillingPage() {
         const items :Producttype[] = Object.values(cart);
         setProducts(items) ;
          let dummytotal=0;
-        for (let i of items){
+        for (const i of items){
   
           dummytotal+=i.price * i.Quantity;
           
         }
         setTotal(dummytotal)
 
-        let orderProduct=items.map((ele)=>{
+        const orderProduct=items.map((ele)=>{
     
           return ({productID:ele._id,
                   productName:ele.title,
@@ -61,7 +61,11 @@ export default function BillingPage() {
 
   
 
-  const [Payment_method,setPayment] =useState(["Credit / Debit Card","Bank Transfer","Cash On Deleviry"]);
+  const [Payment_method,setPayment] =useState<string[]>(["Credit / Debit Card","Bank Transfer","Cash On Deleviry"]);
+
+  useEffect(()=>{
+    setPayment(["Credit / Debit Card","Bank Transfer","Cash On Deleviry"])
+  },[])
   const [payment_Style,setPaymentsytle]=useState(-1)
 
   function handlePaymentMethodSelection(paymentmethod_index:number)
@@ -127,10 +131,11 @@ export default function BillingPage() {
   async function handlesubmit(e:React.MouseEvent<HTMLButtonElement>)
   {
     e.preventDefault();
-    if(formData.userID== undefined)
+
+    if(formData.userID== undefined || formData.userID== "")
 
       { 
-        let userID=user?.id
+        const userID=user?.id
         setFormData((pre)=>({...pre,userID}))
       }
       try {

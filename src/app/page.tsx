@@ -1,5 +1,5 @@
 // pages/index.tsx (or .jsx)
-import Link from "next/link";
+
 import Image from "next/image";
 import { Category_Show } from "./components/homecomponents/category";
 import Home_Products from "./components/homecomponents/homeproducts";

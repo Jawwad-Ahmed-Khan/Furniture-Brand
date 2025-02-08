@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Shopproducts({productList,mainvalue}:{productList:Product[],mainvalue:number})
 {
-       const [showingProduct,setShowingProduct]=useState(1);
+    //    const [showingProduct,_setShowingProduct]=useState(1);
         const [defaultValue,setDefaultValue]=useState(mainvalue);
         const inputdefaul_value=useRef<HTMLInputElement>(null);
         function handleinput(event:React.KeyboardEvent)
@@ -31,7 +31,7 @@ export default function Shopproducts({productList,mainvalue}:{productList:Produc
 
     function handlePageChange(pageIndex: number=0) {
         
-        let start = (Page[pageIndex]-1)*defaultValue;   //konsa Product Phle ay ga start page[0]-1 = 0*defaultValue=0
+        const start = (Page[pageIndex]-1)*defaultValue;   //konsa Product Phle ay ga start page[0]-1 = 0*defaultValue=0
         let end=(Page[pageIndex])*defaultValue;         //  End Konse Product Pr ho ga page[0]=1*defaultvalue=1 *16=16   
        end= end > Product_length ? Product_length : end;
 
@@ -74,7 +74,7 @@ export default function Shopproducts({productList,mainvalue}:{productList:Produc
     }
 
     useEffect(()=>{
-        let end=defaultValue >Product_length ?Product_length:defaultValue;
+        const end=defaultValue >Product_length ?Product_length:defaultValue;
         const Data=productList.slice(0,end);
         setCurrentPage(1);
         setPage([1,2,3])
@@ -131,7 +131,7 @@ export default function Shopproducts({productList,mainvalue}:{productList:Produc
             
             {
                 ShowData.length > 0 ? (
-                    ShowData.map((product: any) => (
+                    ShowData.map((product: Product) => (
                         <div key={product._id} className='relative w-[285px] h-[446px] '>
                      <div className='group bg-black drop-shadow-lg hover:scale-105 transform duration-300'>
                         <div className='relative w-[285px] h-[301px] group-hover:opacity-50 transform duration-300'><Image src={product.imageurl} alt={product.title} layout='fill' objectFit='cover' />

@@ -1,12 +1,14 @@
 'use client'
 import Image from "next/image"
 import { Product } from "../types/Product"
-import { useEffect, useRef, useState } from "react"
+import {useRef, useState } from "react"
 import Shop from "./product"
 import React from "react"
 export default function Barline({productList}:{productList:Product[]})
 {
      const [showingProduct,setShowingProduct]=useState(1);
+     setShowingProduct(1);
+         
     const [defaultValue,setDefaultValue]=useState(16);
     const inputdefaul_value=useRef<HTMLInputElement>(null);
     function handleinput(event:React.KeyboardEvent)

@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-export default function()
+export default function Contact()
 {
     const [usercontact,setUsercontact] = useState({
         name:"",

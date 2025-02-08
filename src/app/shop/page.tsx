@@ -1,6 +1,6 @@
 
-import Image from "next/image"
-import Herosection from "../components/globalcomponents/herosectio";
+
+
 import {client} from "@/sanity/lib/client"
 import Shopproducts from "../components/shopcompnents/product";
 

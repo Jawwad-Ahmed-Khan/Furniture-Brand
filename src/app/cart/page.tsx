@@ -15,7 +15,7 @@ export default function Cart()
       setProducts(items) ;
 
        let dummytotal=0;
-      for (let i of items){
+      for (const i of items){
 
         dummytotal+=i.price * i.Quantity;
         

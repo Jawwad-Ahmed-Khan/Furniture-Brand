@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import {useState } from 'react'
 import { Montserrat } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -28,7 +28,7 @@ const Navibar = () => {
     if(item.length >0)
        {
         let dummytotal=0;
-        for (let i of item){
+        for (const i of item){
   
           dummytotal+=i.price * i.Quantity;
           

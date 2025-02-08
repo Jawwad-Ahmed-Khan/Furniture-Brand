@@ -1,9 +1,9 @@
 'use client'
 import Image from "next/image";
-import Link from "next/link";
+
 import { Product } from "@/app/components/types/Product";
 import { useEffect, useState } from "react";
-import { FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { FaFacebook, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 import AddtoCart from "@/Function/Addtocart";
 
@@ -33,8 +33,8 @@ export default function ProductCard({ product }: { product: Product }) {
 
     const Key_features =()=>{
 
-        let Des = product.description;
-        let Position= Des.indexOf("Key Features:");
+        const Des = product.description;
+        const Position= Des.indexOf("Key Features:");
         return Des.slice(Position);
 
        } 

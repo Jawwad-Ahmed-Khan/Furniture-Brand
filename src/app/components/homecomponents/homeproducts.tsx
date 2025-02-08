@@ -5,8 +5,17 @@ import { client } from "@/sanity/lib/client";
 import Image from 'next/image';
 import Link from 'next/link';
 
-async function getProduct(start: number): Promise<any[]> {
-  const Data = await client.fetch(
+interface Product {
+  _id: string;
+  title: string;
+  isNew: boolean;
+  tags: string[];
+  slug: string;
+  imageurl: string;
+}
+
+async function getProduct(start: number): Promise<Product[]> {
+  const Data = await client.fetch<Product[]>(
     `*[_type == "product"][${start}..${start + 7}] {
       _id,
       title,
@@ -20,7 +29,7 @@ async function getProduct(start: number): Promise<any[]> {
 }
 
 export default function Home_Products() {
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [start, setStart] = useState(0);
 
   const showemore = () => {
@@ -47,7 +56,7 @@ export default function Home_Products() {
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {products.length > 0 ? (
-          products.map((product: any,idx) => (
+          products.map((product: Product,idx) => (
             <div key={idx} className="relative group bg-black drop-shadow-lg">
               {/* Product Image */}
               <div className="relative w-full h-64 md:h-72 group-hover:opacity-50 transition duration-300">
