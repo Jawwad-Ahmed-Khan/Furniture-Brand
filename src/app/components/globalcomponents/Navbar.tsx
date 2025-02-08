@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Montserrat } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Producttype } from '../types/Product'
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -14,14 +15,14 @@ const Navibar = () => {
 
   const [showcartlist,setCartlist] = useState(false)
 
-  const [Product,setProducts] = useState([])
+  const [Product,setProducts] = useState<Producttype[]>([])
    
     const [total,setTotal]=useState(0)
 
   function showlist()
   {
     const cart = JSON.parse(localStorage.getItem('cart') || '{}');
-    const item=Object.values(cart);
+    const item:Producttype[]=Object.values(cart) ;
     setProducts(Object.values(cart));
 
     if(item.length >0)
@@ -38,7 +39,7 @@ const Navibar = () => {
     setCartlist(!showcartlist)
   }
 
-  const removeproduct = (ele)=>{
+  const removeproduct = (ele:Producttype)=>{
     const cart = JSON.parse(localStorage.getItem('cart') || '{}');
 
   delete cart[ele.title];
@@ -259,12 +260,12 @@ const Navibar = () => {
 
                     <div className='border border-[#9f9f9f]'></div>
 
-                    <div className='mx-[8%] flex justify-between mb-6'>
-                    <Link href={"../cart"}>
+                    <div  className='mx-[8%] flex justify-between mb-6'>
+                    <Link href={"../cart"} >
                     <button onClick={showlist} className='border border-black rounded-[50px] w-[87px] h-[30px] text-xs font-normal'>Cart</button>
                     </Link>  
                      <Link href={"../checkout"}>
-                     <button  onClick={showlist} className='border border-black rounded-[50px] w-[118px] h-[30px] text-xs font-normal'>Checkout</button>
+                     <button disabled={total==0 || total==undefined}  onClick={showlist} className='border border-black rounded-[50px] w-[118px] h-[30px] text-xs font-normal'>Checkout</button>
                      </Link>
                      <Link href={""}>
                       <button onClick={showlist} className='border border-black rounded-[50px] w-[135px] h-[30px] text-xs font-normal'>Comparision</button>

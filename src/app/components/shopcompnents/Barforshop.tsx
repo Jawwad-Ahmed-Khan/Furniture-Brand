@@ -60,7 +60,7 @@ export default function Barline({productList}:{productList:Product[]})
     </div>
 
     </div>
-     <Shop productList={productList} defaultvallue={defaultValue}/>
+     <Shop productList={productList} mainvalue={defaultValue}/>
 </div>
     )
 

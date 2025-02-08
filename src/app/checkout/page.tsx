@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
+import { Producttype } from '../components/types/Product';
 
 export default function BillingPage() {
   // Define the state for your div fields
@@ -25,11 +26,11 @@ export default function BillingPage() {
     
   });
 
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Producttype[]> ([]);
     const [total, setTotal] = useState(0);
      useEffect(() => {
         const cart = JSON.parse(localStorage.getItem('cart') || '{}');
-        const items = Object.values(cart);
+        const items :Producttype[] = Object.values(cart);
         setProducts(items) ;
          let dummytotal=0;
         for (let i of items){
@@ -123,7 +124,7 @@ export default function BillingPage() {
     console.log(formData);
   };
  
-  async function handlesubmit(e: React.FormEvent<HTMLFormElement>)
+  async function handlesubmit(e:React.MouseEvent<HTMLButtonElement>)
   {
     e.preventDefault();
     if(formData.userID== undefined)
@@ -237,7 +238,7 @@ export default function BillingPage() {
                 className="w-[453px] h-[75px] border border-[#9F9F9F] rounded-[10px] mt-[22px]"
               >
                 <option value="">Select City</option>
-                {(pakistanCities[formData.province] || []).map((city, idx) => (
+                {(pakistanCities[formData.province as keyof typeof pakistanCities]  || []).map((city:string, idx:number) => (
                   <option key={idx} value={city}>{city}</option>
                 ))}
               </select>

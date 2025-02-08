@@ -3,15 +3,17 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react";
+import { Producttype } from "../components/types/Product";
 export default function Cart()
 {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState<Producttype[]>([]);
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-      const cart = JSON.parse(localStorage.getItem('cart') || '{}');
+      const cart = JSON.parse(localStorage.getItem('cart') || '{}') as Producttype;
       const items = Object.values(cart);
       setProducts(items) ;
+
        let dummytotal=0;
       for (let i of items){
 
@@ -19,10 +21,10 @@ export default function Cart()
         
       }
       setTotal(dummytotal)
-      
+      console.log(items)
     }, []);
 
-    const removeproduct = (ele)=>{
+    const removeproduct = (ele:Producttype)=>{
         const cart = JSON.parse(localStorage.getItem('cart') || '{}');
 
       delete cart[ele.title];

@@ -15,16 +15,16 @@ const isProtectedRoute = createRouteMatcher([
 ]);
 
 export default clerkMiddleware(
-  async (auth, req) => {
-    // If the current route is one of the protected ones…
-    if (isProtectedRoute(req)) {
-      // This call will automatically redirect unauthenticated users.
-      await auth.protect();
-    }
-    // If the user is authenticated (or the route isn’t protected), let the request proceed.
-    return NextResponse.next();
-  },
-  // Optionally enable debug logs in development to see more details in your terminal:
+  // async (auth, req) => {
+  //   // If the current route is one of the protected ones…
+  //   if (isProtectedRoute(req)) {
+  //     // This call will automatically redirect unauthenticated users.
+  //     await auth.protect();
+  //   }
+  //   // If the user is authenticated (or the route isn’t protected), let the request proceed.
+  //   return NextResponse.next();
+  // },
+  // // Optionally enable debug logs in development to see more details in your terminal:
   // { debug: process.env.NODE_ENV === 'development' }
 );
 

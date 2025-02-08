@@ -47,8 +47,8 @@ export default function Home_Products() {
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {products.length > 0 ? (
-          products.map((product: any) => (
-            <div key={product._id} className="relative group bg-black drop-shadow-lg">
+          products.map((product: any,idx) => (
+            <div key={idx} className="relative group bg-black drop-shadow-lg">
               {/* Product Image */}
               <div className="relative w-full h-64 md:h-72 group-hover:opacity-50 transition duration-300">
                 <Image
